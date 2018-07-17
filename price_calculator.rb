@@ -6,6 +6,7 @@ combo_table = {}
 cache = {}
 
 def calculate_without_b3g1f products
+  return cache[products] unless cache[products].nil?
   return 0 if products.count == 0
   ans = 2 ** 31 - 1
   product = products[0]
@@ -21,6 +22,7 @@ def calculate_without_b3g1f products
       ans = [ans, [single + calculate_without_b3g1f(single_left), combo + calculate_without_b3g1f(combo_left)].min].min
     end
   end
+  cache[products] = ans
   ans 
 end
 
